@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quantum Key Distribution Simulation</title>
+    <style>
+        pre {
+            background-color: #f8f9fa;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Quantum Key Distribution Simulation using Cirq</h1>
+    <h3> Length of your input string will decide the the number of qubits Alice will use. 
+        Your input will not decide the state of Alice's qubits instead it provides the length of qubits string. 
+        Based on the total number of qubits a random string of bits of 0 and 1 will be generated as Alice's initial 
+        state of qubits. Following that a random string of 0 and 1 will be generated as Alice's base. The QKD simulator 
+        then create the circuit diagram based on Alice's bases which is followed by Bob's measurement.</h3>
+    <form method="post">
+        <label for="alice_bits">Enter Alice's Bits (as a binary string):</label>
+        <input type="text" id="alice_bits" name="alice_bits" placeholder="010101" pattern="[01]+" required>
+        <button type="submit">Simulate</button>
+    </form>
+    
+    {% if simulation_output %}
+    <h2>Simulation Results</h2>
+    <div>
+        <h3>Alice's Circuit:</h3>
+        <pre>{{ simulation_output["Alice's Circuit"] }}</pre>
+    </div>
+    <div>
+        <h3>Bob's Circuit:</h3>
+        <pre>{{ simulation_output["Bob's Circuit"] }}</pre>
+    </div>
+    <div>
+        <h3>Shared Key:</h3>
+        <p>{{ simulation_output.shared_key }}</p>
+    </div>
+    <div>
+        <h3>Details:</h3>
+        <p>Alice's bits: {{ simulation_output.alice_bits }}</p>
+        <p>Alice's bases: {{ simulation_output.alice_bases }}</p>
+        <p>Bob's bases: {{ simulation_output.bob_bases }}</p>
+        <p>Bob's results: {{ simulation_output.bob_results }}</p>
+    </div>
+{% endif %}
+</body>
+</html>

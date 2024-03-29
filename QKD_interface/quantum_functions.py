@@ -6,7 +6,7 @@ from copy import deepcopy
 def random_bits(n):
     return np.random.randint(2, size=n) 
 
-# Prepare qubits and encode them based on Alice's random bits and bases
+# Preparing qubits and encoding them based on Alice's random bits and bases
 def prepare_qubits(bit_string, basis_string, qubits):
     for i, bit in enumerate(bit_string):
         if basis_string[i] == 0:  # Prepare in computational basis
@@ -33,25 +33,25 @@ def QKD_simulator(total_qubits):
     # Step 2: Bob generates random bases
     bob_bases = random_bits(total_qubits)
 
-    # Step 3: Prepare qubits based on Alice's bits and bases
+    # Step 3: Preparing qubits based on Alice's bits and bases
     qubits = [cirq.LineQubit(i) for i in range(total_qubits)]
     circuit = cirq.Circuit()
     circuit += prepare_qubits(alice_bits, alice_bases, qubits)
-    Alice_circuit = deepcopy(circuit)  # Make a deep copy for later printing Alice's Quantum circuit
+    Alice_circuit = deepcopy(circuit)  # Making a deep copy for later printing Alice's Quantum circuit
 
 
     # Step 4: Bob measures the qubits in his bases
     circuit += measure_in_basis(qubits, bob_bases)
-    Bob_circuit = deepcopy(circuit)  # Make a deep copy for later printing Bob's Quantum Circuit
+    Bob_circuit = deepcopy(circuit)  # Making a deep copy for later printing Bob's Quantum Circuit
 
-    # Simulate the circuit
+    # Simulating the circuit
     simulator = cirq.Simulator()
     result = simulator.run(circuit, repetitions=1)
 
-    # Extract Bob's measurement results
+    # Extracting Bob's measurement results
     bob_results = [int(result.measurements[f'q{i}'][0]) for i in range(total_qubits)]
 
-    # Step 5: Generate the shared key
+    # Step 5: Generating the shared key
     shared_key = []
     for i in range(total_qubits):
         if alice_bases[i] == bob_bases[i]:

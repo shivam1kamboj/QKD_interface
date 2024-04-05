@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Eve's Interference in Quantum Key Distribution Simulation</title>
+    <style>
+        pre {
+            background-color: #f8f9fa;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Eve's Interference in Quantum Key Distribution Simulation using Cirq</h1>
+    <h3>This simulation demonstrates what happens when an eavesdropper, Eve, tries to interfere with the quantum key distribution between Alice and Bob. Like before, the length of your input string will decide the number of qubits used. However, in this simulation, Eve will also attempt to measure these qubits in random bases before they reach Bob, potentially altering the results and the shared key.</h3>
+    <form method="post">
+        <label for="alice_bits">Enter the number of qubits (as a binary string length):</label>
+        <input type="text" id="alice_bits" name="alice_bits" placeholder="010101" pattern="[01]+" required>
+        <button type="submit">Simulate with Eve's Interference</button>
+    </form>
+    
+    {% if simulation_output %}
+    <h2>Simulation Results with Eve's Interference</h2>
+    <div>
+        <h3>Alice's Circuit:</h3>
+        <pre>{{ simulation_output["Alice's Circuit"] }}</pre>
+    </div>
+    <div>
+        <h3>Bob's Circuit:</h3>
+        <pre>{{ simulation_output["Bob's Circuit"] }}</pre>
+    </div>
+    <div>
+        <h3>Eve's Bases:</h3>
+        <p>{{ simulation_output.eve_bases }}</p>
+    </div>
+    <div>
+        <h3>Shared Key:</h3>
+        <p>{{ simulation_output.shared_key }}</p>
+    </div>
+    <div>
+        <h3>Details:</h3>
+        <p>Alice's bits: {{ simulation_output.alice_bits }}</p>
+        <p>Alice's bases: {{ simulation_output.alice_bases }}</p>
+        <p>Bob's bases: {{ simulation_output.bob_bases }}</p>
+        <p>Bob's results: {{ simulation_output.bob_results }}</p>
+    </div>
+    {% else %}
+        <p>Enter a binary string to simulate QKD with Eve's interference.</p>
+    {% endif %}
+    <a href="/"><button>Back to Home Page</button></a>
+    <div>
+        <h2>Conclusion</h2>
+        <p>In the Quantum Key Distribution (QKD) process, the presence of an eavesdropper, Eve, introduces discrepancies 
+            in the shared key between Alice and Bob due to the fundamental principles of quantum mechanics. When Eve 
+            attempts to measure the qubits being transmitted from Alice to Bob to gain information, the quantum states 
+            of these qubits are disturbed. This disturbance is a direct consequence of the no-cloning theorem and the 
+            quantum measurement process, where measuring a quantum state inherently alters it.</p>
+        <p>Because Alice and Bob select their measurement bases independently and randomly, any attempt by Eve 
+            to measure and resend the qubits in the same state they were originally (to avoid detection) is fundamentally 
+            flawed. Eve cannot perfectly clone the qubits due to the no-cloning theorem and has no knowledge of the bases 
+            Alice used to prepare them. Therefore, when Alice and Bob compare the results of their measurements in matching 
+            bases, they expect to see a 100% correlation in the absence of eavesdropping. However, because Eve's measurements 
+            cause state collapses in random bases, Alice and Bob will notice a higher error rate in their shared key where 
+            their bases matched.</p>
+        <p>This increased error rate is a clear indication of interference. By using privacy amplification and error 
+            correction protocols, Alice and Bob can further analyze the error rates to detect the presence of eavesdropping. 
+            If the error rate exceeds a certain threshold, they can conclude that the key distribution process has been 
+            compromised and can abort the process, ensuring the security of their communication. This demonstrates the power 
+            of QKD and its inherent protection against any form of eavesdropping, leveraging the laws of quantum mechanics to 
+            secure communication channels.</p>
+    </div>
+    
+</body>
+</html>

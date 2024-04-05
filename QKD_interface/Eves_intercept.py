@@ -40,12 +40,12 @@ def QKD_simulator_with_intruder(total_qubits):
     alice_bases = random_bits(total_qubits)
     bob_bases = random_bits(total_qubits)
 
-    # Eve generates random bases for interception
-    eve_bases = random_bits(total_qubits)
-
     qubits = [cirq.LineQubit(i) for i in range(total_qubits)]
     circuit = cirq.Circuit()
     circuit += prepare_qubits(alice_bits, alice_bases, qubits)
+
+      # Eve generates random bases for interception
+    eve_bases = random_bits(total_qubits)
 
     # Eve intercepts and measures the qubits
     circuit += eve_intercept_measure(qubits, eve_bases)

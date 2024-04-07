@@ -1,4 +1,4 @@
-To make quantum key distribution (QKD) more accessible, I developed a web-based simulation using Flask and HTML/JavaScript, with Cirq handling quantum circuit simulations in the backend.
+To make quantum key distribution (QKD) more accessible, I developed a web-based simulation using Flask and HTML/Jinja2, with Cirq handling quantum circuit simulations in the backend.
 
 ## Installation
 To set up the project locally:

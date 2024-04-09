@@ -14,7 +14,8 @@
 </head>
 <body>
     <h1>Quantum Key Distribution Simulation using Cirq</h1>
-    <h3> Length of your input string will decide the the number of qubits Alice will use. 
+    <a href="/eves_interfere"><button>Simulate with Eve's Interference</button></a>
+    <h3> Length of your input string will decide the number of qubits Alice will use. 
         Your input will not decide the state of Alice's qubits instead it provides the length of qubits string. 
         Based on the total number of qubits a random string of bits of 0 and 1 will be generated as Alice's initial 
         state of qubits. Following that a random string of 0 and 1 will be generated as Alice's base. The QKD simulator 
@@ -47,6 +48,5 @@
         <p>Bob's results: {{ simulation_output.bob_results }}</p>
     </div>
 {% endif %}
-<a href="/eves_interfere"><button>Simulate with Eve's Interference</button></a>
 </body>
 </html>

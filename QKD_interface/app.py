@@ -1,8 +1,7 @@
 from flask import Flask, render_template, request
 from quantum_functions import *
 from Eves_intercept import *
-import cirq
-import numpy as np
+
 
 app = Flask(__name__)
 
